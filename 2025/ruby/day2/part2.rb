@@ -1,4 +1,4 @@
-raw_data_input = File.read("../../data_input/day2/part2.dat").chomp
+raw_data_input = File.read("../../data/day2/data.dat").chomp
 
 class Solver
   def initialize(raw_data_input)
