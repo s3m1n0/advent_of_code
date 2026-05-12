@@ -1,4 +1,4 @@
-lines = File.readlines("part1.dat").map{ |item| item.chomp }
+lines = File.readlines("../../data_input/day1/part1.dat").map{ |item| item.chomp }
 
 
 class Solver

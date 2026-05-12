@@ -1,4 +1,4 @@
-lines = File.readlines("part2.dat").map{ |item| item.chomp }
+lines = File.readlines("../../data_input/day1/part2.dat").map{ |item| item.chomp }
 
 class Solver
   def initialize(raw_operatin_array)

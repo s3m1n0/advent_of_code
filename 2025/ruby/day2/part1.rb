@@ -1,4 +1,4 @@
-raw_data_input = File.read("part2.dat").chomp
+raw_data_input = File.read("../../data_input/day2/part1.dat").chomp
 
 class Solver
   def initialize(raw_data_input)
@@ -17,17 +17,16 @@ class Solver
 
   def process_number(number)
     number_string = number.to_s
+    if number_string.length.odd?
+      return
+    end
     half = number_string.length / 2
 
-    half.downto(1) do |i|
-      next unless (number_string.length % i).zero?
+    first_half  = number_string[0...half]
+    second_half = number_string[half..]
 
-      chunks = number_string.scan(/.{1,#{i}}/)
-      if chunks.uniq.length == 1
-        @invalid_numbers += number
-        break
-      end
-      # @invalid_numbers += number
+    if first_half == second_half
+      @invalid_numbers += number
     end
   end
 

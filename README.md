@@ -1,5 +1,16 @@
-# advent_of_code_2025
-advent of code 2025 implementation written in ruby
+# advent of code implementations
 
-important! 
-puzzle inputs are not included in the repository
+[advent of code](https://adventofcode.com/) solutions in different languages,\
+my goal is to solve all advent of code years (2015 - 2025)
+
+## important! 
+**puzzle inputs are not included in the repository as requested by the advent of code author :)**
+
+
+## current progress
+
+current progress
+
+|year| ruby |
+|---| ---|
+|2025| 2/12 |
