@@ -1,14 +1,11 @@
-
 fn main() {
-    part1::part_1();
-    part2::part_2();
+    part_1();
+    part_2();
 }
 
 
-use crate::read_file::parse_file;
-
 pub fn part_1() {
-    let operation_numbers = parse_file();
+    let operations = parse_file();
 
     let mut solution = 0;
 
@@ -25,11 +22,10 @@ pub fn part_1() {
     println!("{}", solution)
 }
 
-
 pub fn part_2() {
-    let operation_numbers = parse_file();
+    let operations = parse_file();
 
-     let mut solution: i32 = 0;
+    let mut solution: i32 = 0;
 
     let mut password: i32 = 50;
 
@@ -46,7 +42,9 @@ pub fn part_2() {
             }
         }
 
-    println!("{}", solution);
+    }
+            println!("{}", solution);
+
 }
 pub fn parse_file() -> Vec<i32> {
     std::fs::read_to_string("../data/day1/data.dat")
