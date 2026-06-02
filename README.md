@@ -1,13 +1,6 @@
 # Advent of Code
  
-Solutions to [Advent of Code](https://adventofcode.com/) (2015–2025) in three languages,
-each exploring a different paradigm.
- 
-| Language | Paradigm |
-|----------|----------|
-| python | Object-oriented |
-| Rust | Imperative |
-| Haskell | Functional |
+Solutions to [Advent of Code](https://adventofcode.com/) (2015–2025) in three languages
  
 > Puzzle inputs are not included, as requested by the AoC author.
  
