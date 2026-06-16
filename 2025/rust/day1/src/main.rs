@@ -47,7 +47,7 @@ pub fn part_2() {
 
 }
 pub fn parse_file() -> Vec<i32> {
-    std::fs::read_to_string("../data/day1/data.dat")
+    std::fs::read_to_string("../data/day1.dat")
         .unwrap()
         .lines()
         .map(|line| {
