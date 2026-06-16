@@ -1,7 +1,7 @@
 
 def read_data():
     data = []
-    with open("../data/day1/data.dat" , "r") as f:
+    with open("../data/day1.dat" , "r") as f:
         for operator in f:
             if operator[:1] == "L":
                 data.append(-int(operator[1:]))
