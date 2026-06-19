@@ -2,7 +2,7 @@ def read_data():
     with open("../data/day3.dat") as f:
         return f.read().strip()
 
-MOVES = {
+DIRECTIONS = {
     ">" : (1 , 0),
     "<" : (-1 , 0),
     "^" : (0 , 1),
@@ -10,29 +10,29 @@ MOVES = {
 }
 
 
-def move(turn, direction):
-    if direction not in MOVES:
-        raise ValueError("invalid character")
-    x,y = turn
-    dx,dy = MOVES[direction]
+def move(pos, direction):
+    x,y = pos
+    dx,dy = DIRECTIONS[direction]
     return (x + dx , y + dy)
 
 def part1(puzzle_input):
-    x, y = 0, 0
+    pos = (0,0)
     visited = {(0, 0)}
     for direction in puzzle_input:
-       x,y = move((x,y) , direction)
-       visited.add((x, y))
+       pos = move(pos , direction)
+       visited.add(pos)
     return len(visited)
 
 def part2(puzzle_input):
-    positions = [(0,0), (0,0)]
+    santa, robo = (0,0), (0,0)
     visited = {(0, 0)}
     for i,direction in enumerate(puzzle_input):
-        idx = i % 2
-        turn = positions[idx]
-        positions[idx] = move(turn, direction)
-        visited.add(positions[idx])
+        if i % 2 == 0:
+            santa = move(santa, direction)
+            visited.add(santa)
+        else:
+            robo = move(robo , direction)
+            visited.add(robo)
     return len(visited)
 
     
