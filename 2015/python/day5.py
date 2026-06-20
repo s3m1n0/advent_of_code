@@ -1,5 +1,8 @@
+import os
 def read_data():
-    with open("../data/day5.dat") as f:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, "..", "data", "day5.dat")   
+    with open(file_path) as f:
         return [line.strip() for line in f]
 
 BAD_COMBOS = ("ab" , "cd" , "pq" , "xy")

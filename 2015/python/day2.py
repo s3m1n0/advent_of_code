@@ -1,5 +1,8 @@
+import os
 def read_data():
-    with open("../data/day2.dat") as f:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, "..", "data", "day2.dat")
+    with open(file_path) as f:
         return [
             tuple(map(int, line.strip().split("x"))) for line in f
         ]

@@ -1,5 +1,8 @@
+import os
 def read_data():
-    with open("../data/day1.dat") as f:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, "..", "data", "day1.dat")
+    with open(file_path) as f:
         return f.read().strip()
 
 def part1(puzzle_input):
