@@ -18,5 +18,5 @@ Solutions to [Advent of Code](https://adventofcode.com/) (2015–2025) in three 
 | 2018 | x    | 
 | 2017 | x    |
 | 2016 | x    |
-| 2015 | 5/25    |
+| 2015 | 6/25    |
  
