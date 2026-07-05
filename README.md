@@ -1,6 +1,6 @@
 # Advent of Code
  
-Solutions to [Advent of Code](https://adventofcode.com/) (2015–2025) in three languages
+Solutions to [Advent of Code](https://adventofcode.com/) (2015–2025) in python
  
 > Puzzle inputs are not included, as requested by the AoC author.
  
