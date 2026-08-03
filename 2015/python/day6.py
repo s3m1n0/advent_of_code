@@ -58,3 +58,6 @@ if __name__ == "__main__":
     data = read_data()
     print(f"part1: {part1(data)}")
     print(f"part2: {part2(data)}")
+
+
+# TODO: optimize

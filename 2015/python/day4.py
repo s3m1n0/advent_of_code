@@ -19,11 +19,15 @@ def solve(puzzle_input, zeros):
         
         i += 1
 
+def part1(data):
+    return solve(data , 5)
 
+def part2(data):
+    return solve(data , 6)
 
 if __name__ == "__main__":
     data = read_data()
-    print(f"part1: {solve(data , 5)}")
-    print(f"part2: {solve(data , 6)}")
+    print(f"part1: {part1(data)}")
+    print(f"part2: {part2(data)}")
 
 # TODO: optimize!
