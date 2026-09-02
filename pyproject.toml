@@ -10,7 +10,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.scripts]
-advent-of-code = "advent_of_code.tools.cli:main"
+advent-of-code = "advent_of_code.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.12.7,<0.13.0"]
