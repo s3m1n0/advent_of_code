@@ -1,33 +1,34 @@
 import hashlib
-import os
+from typing import override
 
-def read_data():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "..", "data", "day4.dat")
-    with open(file_path) as f:
-        return f.read().strip(  )
+from advent_of_code.shared.solution import Solution
 
-def solve(puzzle_input, zeros):
-    target = "0" * zeros
-    encoded_input = puzzle_input.encode()
-    i = 0
-    while True:
-        h = hashlib.md5(encoded_input + str(i).encode()).hexdigest()
 
-        if h.startswith(target):
-            return i
-        
-        i += 1
+class Day4(Solution[str]):
+    @override
+    def parse(self) -> str:
+        return self.data.strip()
 
-def part1(data):
-    return solve(data , 5)
+    @staticmethod
+    def solve(puzzle_input: str, zeros: int) -> int:
+        target = "0" * zeros
+        encoded_input = puzzle_input.encode()
 
-def part2(data):
-    return solve(data , 6)
+        i = 0
+        while True:
+            h = hashlib.md5(
+                encoded_input + str(i).encode()
+            ).hexdigest()
 
-if __name__ == "__main__":
-    data = read_data()
-    print(f"part1: {part1(data)}")
-    print(f"part2: {part2(data)}")
+            if h.startswith(target):
+                return i
 
-# TODO: optimize!
+            i += 1
+
+    @override
+    def part1(self) -> int:
+        return self.solve(self.parsed, 5)
+
+    @override
+    def part2(self) -> int:
+        return self.solve(self.parsed, 6)

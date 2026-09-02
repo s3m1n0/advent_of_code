@@ -1,34 +1,35 @@
-import os
-def read_data():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "..", "data", "day2.dat")
-    with open(file_path) as f:
-        return [
-            tuple(map(int, line.strip().split("x"))) for line in f
-        ]
+from typing import override
+
+from advent_of_code.shared.solution import Solution
 
 
-def part1(puzzle_input):
-    total = 0
-    for l, w, h in puzzle_input:
-        areas = [h * w, w * l, l * h]
-        total += 2 * sum(areas) + min(areas)    
+class Day2(Solution[list[tuple[int, int, int]]]):
+    @override
+    def parse(self) -> list[tuple[int, int, int]]:
+        result: list[tuple[int, int, int]] = []
 
+        for line in self.data.splitlines():
+            l, w, h = map(int, line.split("x"))
+            result.append((l, w, h))
 
-    return total
+        return result
 
-def part2(puzzle_input):
-    total = 0
-    for l, w, h in puzzle_input:
-        wrap  =  2 * (h + l + w - max(h,l,w))
-        total += wrap + h * w * l    
+    @override
+    def part1(self) -> int:
+        total = 0
 
+        for l, w, h in self.parsed:
+            areas = [h * w, w * l, l * h]
+            total += 2 * sum(areas) + min(areas)
 
-    return total
+        return total
 
+    @override
+    def part2(self) -> int:
+        total = 0
 
+        for l, w, h in self.parsed:
+            wrap = 2 * (h + l + w - max(h, l, w))
+            total += wrap + h * w * l
 
-if __name__ == "__main__":
-    data = read_data()
-    print(f"part1: {part1(data)}")
-    print(f"part2: {part2(data)}")
+        return total

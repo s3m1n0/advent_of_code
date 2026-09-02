@@ -1,48 +1,52 @@
-import os
-def read_data():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "..", "data", "day3.dat")
-    with open(file_path) as f:
-        return f.read().strip()
+from typing import override
+
+from advent_of_code.shared.solution import Solution
 
 DIRECTIONS = {
-    ">" : (1 , 0),
-    "<" : (-1 , 0),
-    "^" : (0 , 1),
-    "v" : (0 , -1)
+    ">": (1, 0),
+    "<": (-1, 0),
+    "^": (0, 1),
+    "v": (0, -1),
 }
 
 
-def move(pos, direction):
-    x,y = pos
-    dx,dy = DIRECTIONS[direction]
-    return (x + dx , y + dy)
+class Day3(Solution[str]):
+    @override
+    def parse(self) -> str:
+        return self.data.strip()
 
-def part1(puzzle_input):
-    pos = (0,0)
-    visited = {(0, 0)}
-    for direction in puzzle_input:
-       pos = move(pos , direction)
-       visited.add(pos)
-    return len(visited)
+    @staticmethod
+    def move(
+        pos: tuple[int, int],
+        direction: str,
+    ) -> tuple[int, int]:
+        x, y = pos
+        dx, dy = DIRECTIONS[direction]
+        return (x + dx, y + dy)
 
-def part2(puzzle_input):
-    santa, robo = (0,0), (0,0)
-    visited = {(0, 0)}
-    for i,direction in enumerate(puzzle_input):
-        if i % 2 == 0:
-            santa = move(santa, direction)
-            visited.add(santa)
-        else:
-            robo = move(robo , direction)
-            visited.add(robo)
-    return len(visited)
+    @override
+    def part1(self) -> int:
+        pos = (0, 0)
+        visited = {(0, 0)}
 
-    
+        for direction in self.parsed:
+            pos = self.move(pos, direction)
+            visited.add(pos)
 
+        return len(visited)
 
+    @override
+    def part2(self) -> int:
+        santa = (0, 0)
+        robo = (0, 0)
+        visited = {(0, 0)}
 
-if __name__ == "__main__":
-    data = read_data()
-    print(f"part1: {part1(data)}")
-    print(f"part2: {part2(data)}")
+        for i, direction in enumerate(self.parsed):
+            if i % 2 == 0:
+                santa = self.move(santa, direction)
+                visited.add(santa)
+            else:
+                robo = self.move(robo, direction)
+                visited.add(robo)
+
+        return len(visited)
