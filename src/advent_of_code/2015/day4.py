@@ -16,9 +16,7 @@ class Day4(Solution[str]):
 
         i = 0
         while True:
-            h = hashlib.md5(
-                encoded_input + str(i).encode()
-            ).hexdigest()
+            h = hashlib.md5(encoded_input + str(i).encode()).hexdigest()
 
             if h.startswith(target):
                 return i
