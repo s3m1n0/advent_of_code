@@ -2,8 +2,9 @@ from typing import override
 
 from advent_of_code.shared.solution import Solution
 
+type Dimension = tuple[int, int, int]
 
-class Day2(Solution[list[tuple[int, int, int]]]):
+class Day2(Solution[list[Dimension]]):
     @override
     def parse(self) -> list[tuple[int, int, int]]:
         result: list[tuple[int, int, int]] = []
