@@ -1,2 +1,3 @@
 *.dat
 target/
+__pycache__/
