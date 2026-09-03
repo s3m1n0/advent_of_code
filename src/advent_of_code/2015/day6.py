@@ -1,8 +1,8 @@
-from typing import TypeAlias, override
+from typing import override
 
 from advent_of_code.shared.solution import Solution
 
-Instruction: TypeAlias = tuple[
+type Instruction = tuple[
     str,
     tuple[int, int],
     tuple[int, int],
