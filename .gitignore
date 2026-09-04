@@ -2,3 +2,4 @@
 target/
 __pycache__/
 aoc_session
+aoc_cache.db
