@@ -14,14 +14,11 @@ def load_solution(target: tuple[int, int]) -> type[Solution]:
     except ModuleNotFoundError as exc:
         if exc.name == module_name:
             raise SystemExit(
-                f"No solution found for Advent of Code "
-                f"{year} Day {day:02}"
+                f"No solution found for Advent of Code {year} Day {day:02}"
             ) from exc
         raise
 
     try:
         return getattr(module, class_name)
     except AttributeError as exc:
-        raise SystemExit(
-            f"{module_name} does not contain {class_name}"
-        ) from exc
+        raise SystemExit(f"{module_name} does not contain {class_name}") from exc

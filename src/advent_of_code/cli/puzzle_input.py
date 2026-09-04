@@ -57,7 +57,6 @@ def get_data(target: tuple[int, int]) -> str:
     year, day = target
     console = Console()
 
-
     if data := check_cache(year, day):
         console.print("[green]✓[/green] Puzzle input loaded from cache")
         return data
