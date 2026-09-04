@@ -23,4 +23,4 @@ class Day1(Solution[str]):
 
             if floor == -1:
                 return idx
-        raise Exception("eleva  tor never moved under the base floor")
+        raise Exception("elevator never moved under the base floor")
