@@ -1,3 +1,4 @@
 *.dat
 target/
 __pycache__/
+aoc_session
