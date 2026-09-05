@@ -6,7 +6,7 @@ from advent_of_code.shared.solution import Solution
 class Day1(Solution[str]):
     @override
     def parse(self):
-        return str(self).strip()
+        return str(self.data).strip()
 
     @override
     def part1(self):
