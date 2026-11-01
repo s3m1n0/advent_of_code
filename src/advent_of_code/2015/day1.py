@@ -1,6 +1,6 @@
 from aocd import get_data
 
-data = get_data(day=1, year=2015)
+puzzle_input = get_data(day=1, year=2015)
 
 
 def part1(data: str):
@@ -21,5 +21,5 @@ def part2(data):
 
 
 if __name__ == "__main__":
-    print(part1(data))
-    print(part2(data))
+    print(part1(puzzle_input))
+    print(part2(puzzle_input))

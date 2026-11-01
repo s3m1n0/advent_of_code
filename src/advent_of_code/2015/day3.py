@@ -1,6 +1,6 @@
-from typing import override
+from aocd import get_data
 
-from advent_of_code.shared.solution import Solution
+puzzle_input = get_data(day=3, year=2015)
 
 DIRECTIONS = {
     ">": (1, 0),
@@ -10,43 +10,47 @@ DIRECTIONS = {
 }
 
 
-class Day3(Solution[str]):
-    @override
-    def parse(self) -> str:
-        return self.data.strip()
+def parse(puzzle_input: str) -> str:
+    return puzzle_input.strip()
 
-    @staticmethod
-    def move(
-        pos: tuple[int, int],
-        direction: str,
-    ) -> tuple[int, int]:
-        x, y = pos
-        dx, dy = DIRECTIONS[direction]
-        return (x + dx, y + dy)
 
-    @override
-    def part1(self) -> int:
-        pos = (0, 0)
-        visited = {(0, 0)}
+def move(
+    pos: tuple[int, int],
+    direction: str,
+) -> tuple[int, int]:
+    x, y = pos
+    dx, dy = DIRECTIONS[direction]
+    return (x + dx, y + dy)
 
-        for direction in self.parsed:
-            pos = self.move(pos, direction)
-            visited.add(pos)
 
-        return len(visited)
+def part1(data: str) -> int:
+    pos = (0, 0)
+    visited = {(0, 0)}
 
-    @override
-    def part2(self) -> int:
-        santa = (0, 0)
-        robo = (0, 0)
-        visited = {(0, 0)}
+    for direction in data:
+        pos = move(pos, direction)
+        visited.add(pos)
 
-        for i, direction in enumerate(self.parsed):
-            if i % 2 == 0:
-                santa = self.move(santa, direction)
-                visited.add(santa)
-            else:
-                robo = self.move(robo, direction)
-                visited.add(robo)
+    return len(visited)
 
-        return len(visited)
+
+def part2(data: str) -> int:
+    santa = (0, 0)
+    robo = (0, 0)
+    visited = {(0, 0)}
+
+    for i, direction in enumerate(data):
+        if i % 2 == 0:
+            santa = move(santa, direction)
+            visited.add(santa)
+        else:
+            robo = move(robo, direction)
+            visited.add(robo)
+
+    return len(visited)
+
+
+if __name__ == "__main__":
+    data = parse(puzzle_input)
+    print(part1(data))
+    print(part2(data))

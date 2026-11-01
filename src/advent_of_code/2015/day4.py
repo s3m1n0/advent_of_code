@@ -1,32 +1,36 @@
+from aocd import get_data
 import hashlib
-from typing import override
 
-from advent_of_code.shared.solution import Solution
+puzzle_input = get_data(day=4, year=2015)
 
 
-class Day4(Solution[str]):
-    @override
-    def parse(self) -> str:
-        return self.data.strip()
+def parse(puzzle_input: str) -> str:
+    return puzzle_input.strip()
 
-    @staticmethod
-    def solve(puzzle_input: str, zeros: int) -> int:
-        target = "0" * zeros
-        encoded_input = puzzle_input.encode()
 
-        i = 0
-        while True:
-            h = hashlib.md5(encoded_input + str(i).encode()).hexdigest()
+def solve(puzzle_input: str, zeros: int) -> int:
+    target = "0" * zeros
+    encoded_input = puzzle_input.encode()
 
-            if h.startswith(target):
-                return i
+    i = 0
+    while True:
+        h = hashlib.md5(encoded_input + str(i).encode()).hexdigest()
 
-            i += 1
+        if h.startswith(target):
+            return i
 
-    @override
-    def part1(self) -> int:
-        return self.solve(self.parsed, 5)
+        i += 1
 
-    @override
-    def part2(self) -> int:
-        return self.solve(self.parsed, 6)
+
+def part1(data: str) -> int:
+    return solve(data, 5)
+
+
+def part2(data: str) -> int:
+    return solve(data, 6)
+
+
+if __name__ == "__main__":
+    data = parse(puzzle_input)
+    print(part1(data))
+    print(part2(data))
