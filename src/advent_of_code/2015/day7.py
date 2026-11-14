@@ -1,78 +1,72 @@
 from aocd import get_data
 
-from dataclasses import dataclass
+
+class InstructionNode:
+    def __init__(self):
+        self.instruction: str = ""
+        self.left: int | str | None = None
+        self.right: int | str | None = None
+
+
+wire_lookup: dict[str, InstructionNode | int] = {}
 
 puzzle_input = get_data(day=7, year=2015)
 
 
-def parse(puzzle_input) -> list[int | str | tuple[list[int | str], str, str]]:
-    result = []
+# no return instructions are global state
+def parse(puzzle_input):
     try_number_conversion = lambda x: int(x) if x.isdigit() else x
     for line in puzzle_input.splitlines():
+        instruction = InstructionNode()
         operators = line.split(" ")
 
+        # ASSIGMENT operator
         if len(operators) == 3:
-            result.append(
-                (
-                    try_number_conversion(operators[0]),
-                    operators[2],
-                    "ASSIGN",
-                )
-            )
+            if operators[0].isdigit():
+                wire_lookup[operators[2]] = int(operators[0])
+                continue
 
+            instruction.left = try_number_conversion(operators[0])
+            instruction.instruction = "ASSIGNMENT"
+
+            wire_lookup[operators[2]] = instruction
+            continue
+
+        # NOT operator
         elif len(operators) == 4:
-            result.append((try_number_conversion(operators[1]), operators[3], "NOT"))
+            instruction.left = try_number_conversion(operators[1])
+            instruction.instruction = "NOT"
+            wire_lookup[operators[2]] = instruction
+            continue
 
         elif operators[1] == "LSHIFT":
-            result.append(
-                (
-                    [
-                        try_number_conversion(operators[0]),
-                        try_number_conversion(operators[2]),
-                    ],
-                    operators[-1],
-                    "LSHIFT",
-                )
-            )
-        elif operators[1] == "RSHIFT":
-            result.append(
-                (
-                    [
-                        try_number_conversion(operators[0]),
-                        try_number_conversion(operators[2]),
-                    ],
-                    operators[-1],
-                    "RSHIFT",
-                )
-            )
-        elif operators[1] == "AND":
-            result.append(
-                (
-                    [
-                        try_number_conversion(operators[0]),
-                        try_number_conversion(operators[2]),
-                    ],
-                    operators[-1],
-                    "AND",
-                )
-            )
+            instruction.left = try_number_conversion(operators[0])
+            instruction.right = try_number_conversion(operators[2])
+            instruction.instruction = ("LSHIFT",)
+            wire_lookup[operators[-1]] = instruction
+            continue
 
+        elif operators[1] == "RSHIFT":
+            instruction.left = try_number_conversion(operators[0])
+            instruction.right = try_number_conversion(operators[2])
+            instruction.instruction = "RSHIFT"
+            wire_lookup[operators[-1]] = instruction
+            continue
+
+        elif operators[1] == "AND":
+            instruction.left = try_number_conversion(operators[0])
+            instruction.right = try_number_conversion(operators[2])
+            instruction.instruction = ("AND",)
+            wire_lookup[operators[-1]] = instruction
+            continue
         elif operators[1] == "OR":
-            result.append(
-                (
-                    [
-                        try_number_conversion(operators[0]),
-                        try_number_conversion(operators[2]),
-                    ],
-                    operators[-1],
-                    "OR",
-                )
-            )
+            instruction.left = try_number_conversion(operators[0])
+            instruction.right = try_number_conversion(operators[2])
+            instruction.instruction = "OR"
+            wire_lookup[operators[-1]] = instruction
+            continue
         else:
             print("bad line")
-        print(f"{line} just added: {result[-1]}")
-
-    return result
 
 
 def part1(data) -> int:
