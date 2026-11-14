@@ -69,7 +69,29 @@ def parse(puzzle_input):
             print("bad line")
 
 
+def parse_root(instruction: InstructionNode) -> int:
+    match instruction.instruction:
+        case "ASSIGNMENT":
+            ...
+        case "NOT":
+            ...
+        case "LSHIFT":
+            ...
+        case "RSHIFT":
+            ...
+        case "AND":
+            ...
+        case "OR":
+            ...
+    return 5
+
+
 def part1(data) -> int:
+    # find the a wire
+
+    root = wire_lookup["a"]
+
+    print(root)
 
     return 0
 
