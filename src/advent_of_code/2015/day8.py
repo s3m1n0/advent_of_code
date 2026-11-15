@@ -57,10 +57,19 @@ def part1(data: list[str]) -> int:
 
 
 def part2(data) -> int:
-    return 0
+    old_string_count = 0
+    new_string_count = 0
+
+    for line in data:
+        old_string_count += len(line)
+
+        new_string_count += len(line)
+        new_string_count += 2 + line.count("\\") + line.count('"')
+
+    return new_string_count - old_string_count
 
 
 if __name__ == "__main__":
     data = parse(puzzle_input)
     print(part1(data))
-    # print(part2(data))
+    print(part2(data))
