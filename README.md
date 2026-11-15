@@ -18,5 +18,5 @@ Solutions to [Advent of Code](https://adventofcode.com/) (2015–2025) in python
 | 2018 | 0/25   | 
 | 2017 | 0/25   |
 | 2016 | 0/25   |
-| 2015 | 6/25    |
+| 2015 | 7/25    |
  
