@@ -25,11 +25,11 @@ def parse(puzzle_input: str) -> dict[str, list[tuple[str, int]]]:
     return adjacency_list
 
 
-def part1(data: list[str]) -> int:
+def part1(data: dict[str, list[tuple[str, int]]]) -> int:
     return 0
 
 
-def part2(data) -> int:
+def part2(data: dict[str, list[tuple[str, int]]]) -> int:
     return 0
 
 
